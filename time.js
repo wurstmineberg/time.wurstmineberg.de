@@ -20,6 +20,8 @@ $.ajax('http://api.wurstmineberg.de/server/level.json', {
             var secondsSinceSunrise = Math.floor(ticksSinceSunrise / 20);
             var hoursSinceSunrise = Math.floor(secondsSinceSunrise / 50);
             var secondsSinceHour = secondsSinceSunrise % 50;
+            hoursSinceSunrise = (hoursSinceSunrise < 10 ? '0' : '') + hoursSinceSunrise;
+            secondsSinceHour = (secondsSinceHour < 10 ? '0' : '') + secondsSinceHour;
             $('#time-caption').append(hoursSinceSunrise + ':' + secondsSinceHour);
             $('#time-text').html(ticksSinceSunrise + ' ticks');
             $('#ticks-text').html(timeticks + ' ticks since the beginning of time');
