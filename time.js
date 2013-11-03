@@ -9,10 +9,10 @@ $.ajax('http://api.wurstmineberg.de/server/level.json', {
         }
 
         if (timeticks == -1) {
-            $('#time-caption').text("???");
-            $('#time-text').text("I have no idea. Seriously. Something is broken");
+            $('#time-caption').html("???");
+            $('#time-text').html("I have no idea. Seriously. Something is broken");
         } else {
-            $('#time-text').text(timeticks);
+            $('#time-text').html(timeticks);
         } 
     }
 });
