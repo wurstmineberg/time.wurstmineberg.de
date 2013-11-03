@@ -1,7 +1,7 @@
 $.ajax('http://api.wurstmineberg.de/server/level.json', {
     dataType: 'json',
     success: function(data) {
-        var rainstatus = -1
+        var timeticks = -1
         if ('Data' in data) {
             if ('DayTime' in data['Data']) {
                 timeticks = data['Data']['DayTime']
