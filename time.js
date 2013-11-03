@@ -12,7 +12,7 @@ $.ajax('http://api.wurstmineberg.de/server/level.json', {
             $('#time-caption').html("???");
             $('#time-text').html("I have no idea. Seriously. Something is broken");
         } else {
-            $('#time-text').html(timeticks);
+            $('#time-text').html(timeticks.toString());
         } 
     }
 });
