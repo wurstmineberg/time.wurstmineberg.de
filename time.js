@@ -1,5 +1,9 @@
 $.ajax('http://api.wurstmineberg.de/server/level.json', {
     dataType: 'json',
+    error: function(request, status, error) {
+        $('#time-caption').html("???");
+        $('#time-text').html("Could not load level.json");
+    },
     success: function(data) {
         var timeticks = -1;
         if ('Data' in data) {
