@@ -21,7 +21,8 @@ $.ajax('http://api.wurstmineberg.de/server/level.json', {
             var hoursSinceSunrise = Math.floor(secondsSinceSunrise / 50);
             var secondsSinceHour = secondsSinceSunrise % 50;
             $('#time-caption').append(hoursSinceSunrise + ':' + secondsSinceHour);
-            $('#time-text').html(timeticks + ' ticks');
+            $('#time-text').html(ticksSinceSunrise + ' ticks');
+            $('#ticks-text').html(timeticks + ' ticks since the beginning of time');
         } 
     }
 });
