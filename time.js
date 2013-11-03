@@ -16,7 +16,12 @@ $.ajax('http://api.wurstmineberg.de/server/level.json', {
             $('#time-caption').html("???");
             $('#time-text').html("I have no idea. Seriously. Something is broken");
         } else {
-            $('#time-text').html(timeticks.toString());
+            var ticksSinceSunrise = timeticks % 24000;
+            var secondsSinceSunrise = ticksSinceSunrise / 20;
+            var hoursSinceSunrise = secondsSinceSunrise / 50;
+            var secondsSinceHour = secondsSinceSunrise % 50;
+            $('#time-caption').append(hoursSinceSunrise + ':' + secondsSinceHour);
+            $('#time-text').html(timeticks + ' ticks');
         } 
     }
 });
