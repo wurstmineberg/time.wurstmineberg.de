@@ -34,7 +34,7 @@ function tickTimer () {
 
 function setTicks(ticks) {
     var ticksSinceSunrise = timeticks % 24000;
-    var timeProgress = ticksSinceSunrise / 24000;
+    var timeProgress = timeticks / 24000;
     var secondsSinceSunrise = Math.floor(ticksSinceSunrise / 20);
     var hoursSinceSunrise = Math.floor(secondsSinceSunrise / 50);
     var secondsSinceHour = secondsSinceSunrise % 50;
