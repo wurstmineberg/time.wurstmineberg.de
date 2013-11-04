@@ -1,4 +1,5 @@
 var timeticks = -1;
+var adjusting = true;
 
 // Save the DOM elements for faster access
 var dial = $('.dial');
@@ -9,6 +10,10 @@ var ticks_text = $('#ticks-text');
 getData();
 setInterval(getData, 30000);
 setInterval(tickTimer, 50);
+
+function stopAdjusting() {
+	adjusting = false;
+}
 
 function rotate(degrees) {
     dial.css({
@@ -21,7 +26,7 @@ function rotate(degrees) {
 }
 
 function tickTimer () {
-	if (timeticks > 0) {
+	if (timeticks > 0 && !adjusting) {
 		timeticks = Math.floor(timeticks + 1);
 		setTicks(timeticks);
 	};
@@ -51,6 +56,8 @@ function getData() {
             $('#time-text').html("Could not load level.json");
         },
         success: function(data) {
+        	adjusting = true;
+
             if ('Data' in data) {
                 if ('DayTime' in data['Data']) {
                     timeticks = data['Data']['DayTime'];
@@ -72,6 +79,7 @@ function getData() {
             	timeticks = Math.floor(timeticks + tickOffset)
 
             	setTicks(timeticks);
+        		adjusting = false;
             } 
         }
     });

@@ -22,4 +22,6 @@
 	position: absolute;
 	top: 0px;
 	left: 0px;
+	transition: all 0.2s;
+	-webkit-transition: all 0.2s; /* Safari */
 }
