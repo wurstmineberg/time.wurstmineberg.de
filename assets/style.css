@@ -1,0 +1,25 @@
+#container {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.clock {
+	width: 112px;
+	height: 128px;
+	position: relative;
+	margin: 0 auto;
+}
+
+.frame {
+	z-index: 10;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+
+.dial {
+	z-index: 5;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}

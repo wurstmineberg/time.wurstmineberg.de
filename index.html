@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>What's the time on Wurstmineberg?</title>
-	<link href="style.css" rel="stylesheet" type="text/css" />
+	<link href="assets/style.css" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 	<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,9 +15,12 @@
   <div id="container">
 
     <h1 id="time-caption">The time is </h1>
-    <p id="time-text"></p>
+	<div class="clock">
+		<img src="assets/clock.png" alt="" class="frame">
+		<img src="assets/dial.png" alt="" class="dial">
+	</div>
     <p id="ticks-text"></p>
-    <p>The time is displayed in <a href="http://minecraft.gamepedia.com/Time">Minecraft hours</a> and real-life seconds. An hour is 50 seconds long. A Minecraft day starts at the end of sunrise.</p>
+    <p>The time is displayed in <a href="http://minecraft.gamepedia.com/Time">Minecraft hours</a> and real-life seconds. An hour has 50 seconds. A Minecraft day starts at the end of sunrise.</p>
     <hr/>
 
     <footer>
@@ -28,8 +31,8 @@
     </footer>
   </div>
 
-<script src="//code.jquery.com/jquery.js"></script>
+<script src="//code.jquery.com/jquery.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-<script src="/time.js"></script>
+<script src="assets/time.js"></script>
 </body>
 </html>
