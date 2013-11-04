@@ -25,7 +25,7 @@ function getData() {
                     timeticks = data['Data']['DayTime'];
                 }
             }
-
+            
             if (timeticks == -1) {
                 $('#time-caption').html("???");
                 $('#time-text').html("I have no idea. Seriously. Something is broken");
@@ -36,8 +36,8 @@ function getData() {
                 var secondsSinceHour = secondsSinceSunrise % 50;
                 hoursSinceSunrise = (hoursSinceSunrise < 10 ? '0' : '') + hoursSinceSunrise;
                 secondsSinceHour = (secondsSinceHour < 10 ? '0' : '') + secondsSinceHour;
-
-                dg = (parseInt((timeticks % 24000) / 1000) * 360 / 24) - 180;
+                
+                dg = (parseInt(ticksSinceSunrise / 1000) * 360 / 24) - 90;
                 rotate(dg);
                 console.log(dg);
                 $('#time-caption').append(hoursSinceSunrise + ':' + secondsSinceHour);
