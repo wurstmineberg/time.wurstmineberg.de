@@ -28,19 +28,19 @@ setInterval(getData, 30000);
 setInterval(tickTimer, 50);
 
 function stopAdjusting() {
-	adjusting = false;
+    adjusting = false;
 }
 
 function rotate(degrees) {
-	while (degrees < (current_rotation - 360)) {
-		degrees += 360;
-	};
+    while (degrees < (current_rotation - 360)) {
+        degrees += 360;
+    };
 
-	while (degrees > (current_rotation + 360)) {
-		degrees -= 360;
-	};
+    while (degrees > (current_rotation + 360)) {
+        degrees -= 360;
+    };
 
-	current_rotation = degrees;
+    current_rotation = degrees;
     dial.css({
         '-webkit-transform' : 'rotate('+degrees+'deg)',
         '-moz-transform' : 'rotate('+degrees+'deg)',
@@ -51,10 +51,10 @@ function rotate(degrees) {
 }
 
 function tickTimer () {
-	if (timeticks > 0 && !adjusting) {
-		timeticks = Math.floor(timeticks + 1);
-		setTicks(timeticks);
-	};
+    if (timeticks > 0 && !adjusting) {
+        timeticks = Math.floor(timeticks + 1);
+        setTicks(timeticks);
+    };
 }
 
 function padNumber(num, size) {
@@ -65,12 +65,13 @@ function padNumber(num, size) {
 
 function setTicks(ticks) {
     var ticksSinceSunrise = timeticks % 24000;
+    var timeProgress = timeticks / 24000;
     
-    dg = ((ticksSinceSunrise / 24000) * 360) - 90;
+    dg = (timeProgress * 360) - 90;
     rotate(dg);
 
-	var seconds = Math.floor(ticks / 20);
-	var secondsSinceHour = seconds % 50;
+    var seconds = Math.floor(ticks / 20);
+    var secondsSinceHour = seconds % 50;
     var hours = Math.floor(seconds / 50);
     var hoursSinceDay = hours % 24;
     var days = Math.floor(hours / 24);
@@ -109,7 +110,7 @@ function getData() {
             $('#time-text').html("Could not load level.json");
         },
         success: function(data) {
-        	adjusting = true;
+            adjusting = true;
 
             if ('Data' in data) {
                 if ('DayTime' in data['Data']) {
@@ -121,18 +122,18 @@ function getData() {
                 $('#time-caption').html("???");
                 $('#time-text').html("I have no idea. Seriously. Something is broken");
             } else {
-            	var tickOffset = 0;
+                var tickOffset = 0;
 
-            	if ('api-time-last-modified' in data &&
-            		'api-time-result-fetched' in data) {
-            		var secondOffset = data['api-time-result-fetched'] - data['api-time-last-modified'];
-            		tickOffset = secondOffset * 20;
-            	};
+                if ('api-time-last-modified' in data &&
+                    'api-time-result-fetched' in data) {
+                    var secondOffset = data['api-time-result-fetched'] - data['api-time-last-modified'];
+                    tickOffset = secondOffset * 20;
+                };
 
-            	timeticks = Math.floor(timeticks + tickOffset)
+                timeticks = Math.floor(timeticks + tickOffset)
 
-            	setTicks(timeticks);
-        		adjusting = false;
+                setTicks(timeticks);
+                adjusting = false;
             } 
         }
     });
