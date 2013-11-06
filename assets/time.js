@@ -90,7 +90,7 @@ function setTicks(ticks) {
     date_year.text(years);
 
     if (daysSinceMonth != current_day) {
-    	date_day.attr('data-original-title', 'One day has 24 hours and starts at sunrise. ' + day_strings[daysSinceMonth] + ' is the ' + number_strings[daysSinceMonth] + ' month.');
+    	date_day.attr('data-original-title', 'One day has 24 hours and starts at sunrise. ' + day_strings[daysSinceMonth] + ' is the ' + number_strings[daysSinceMonth] + ' day of the month.');
     	date_month.attr('data-original-title', 'One month has 8 days and represents a full moon phase. ' + month_strings[monthsSinceYear] + ' is the ' + number_strings[monthsSinceYear] + ' month.');
     	$("abbr").tooltip('fixTitle');
     	current_day = daysSinceMonth;
