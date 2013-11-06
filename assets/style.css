@@ -25,3 +25,14 @@
 	transition: all 0.2s;
 	-webkit-transition: all 0.2s; /* Safari */
 }
+
+abbr[title] {
+	border-bottom-width: 0 !important;
+	border-bottom: none !important;
+}
+
+.moon-phase {
+	width: 128px;
+	height: 128px;
+	background-image: url("/assets/moon_phases.png");
+}

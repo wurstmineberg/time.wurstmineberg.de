@@ -6,7 +6,19 @@ var dial = $('.dial');
 var time = $('#time');
 var time_text = $('#time-text');
 var ticks_text = $('#ticks-text');
+var time_hour = $('#time-hour');
+var time_second = $('#time-second');
+var time_tick = $('#time-tick')
+var date = $('#date');
+var date_day = $('#date-day');
+var date_month = $('#date-month');
+var date_year = $('#date-year');
+var moon_phase = $('.moon-phase')
 
+var day_strings = ['Monday', 'Ducksday', 'Cowsday', 'Sheepsday', 'Horseday', 'Squidsday', 'Caturday', 'Pigsday'];
+var month_strings = ['Ironary', 'Zombiary', 'Gharch', 'Slimepril', 'Ocely', 'Magmacubust', 'Mooshtober', 'Snowember', 'Enderember'];
+
+$("abbr").tooltip();
 getData();
 setInterval(getData, 30000);
 setInterval(tickTimer, 50);
@@ -32,20 +44,41 @@ function tickTimer () {
 	};
 }
 
+function padNumber(num, size) {
+    var s = num + '';
+    while (s.length < size) s = "0" + s;
+    return s;
+}
+
 function setTicks(ticks) {
     var ticksSinceSunrise = timeticks % 24000;
     var timeProgress = timeticks / 24000;
-    var secondsSinceSunrise = Math.floor(ticksSinceSunrise / 20);
-    var hoursSinceSunrise = Math.floor(secondsSinceSunrise / 50);
-    var secondsSinceHour = secondsSinceSunrise % 50;
-    hoursSinceSunrise = (hoursSinceSunrise < 10 ? '0' : '') + hoursSinceSunrise;
-    secondsSinceHour = (secondsSinceHour < 10 ? '0' : '') + secondsSinceHour;
     
     dg = (timeProgress * 360) - 90;
     rotate(dg);
-    time.html(hoursSinceSunrise + ':' + secondsSinceHour);
-    time_text.html(ticksSinceSunrise + ' ticks');
-    ticks_text.html(timeticks + ' ticks since the beginning of time');
+
+	var seconds = Math.floor(ticks / 20);
+	var secondsSinceHour = seconds % 50;
+    var hours = Math.floor(seconds / 50);
+    var hoursSinceDay = hours % 24;
+    var days = Math.floor(hours / 24);
+    var daysSinceMonth = days % 8;
+    var months = Math.floor(days / 8);
+    var monthsSinceYear = months % 9 ;
+    var years = Math.floor(months / 9);
+
+    time_hour.text(padNumber(hoursSinceDay, 2));
+    time_second.text(padNumber(secondsSinceHour, 2));
+    time_tick.text(ticksSinceSunrise);
+    //ticks_text.html(timeStringForTicks(timeticks) + ' (' + timeticks + ' ticks) since the beginning of time');
+
+    date_day.text(day_strings[daysSinceMonth]);
+    date_month.text(month_strings[monthsSinceYear]);
+    date_year.text(years);
+
+    var offset_width = Math.floor(daysSinceMonth % 4) * 128;
+    var offset_height = Math.floor(daysSinceMonth / 4) * 128;
+    moon_phase.css('background-position', '-' + offset_width + 'px ' + '-' + offset_height + 'px');
 }
 
 function getData() {

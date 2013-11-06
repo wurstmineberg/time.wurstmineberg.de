@@ -12,14 +12,19 @@
     </head>
     <body>
         <div id="container">
-            <h1 id="time-caption">The time is <span id="time"></span></h1>
+            <h1 id="time-caption">The time is <abbr id="time-hour" data-placement="left" title="One hour has 50 real life seconds.">??</abbr>:<abbr data-placement="right" id="time-second" title="One minute represents one real second.">??</abbr></h1>
             <div class="clock">
                 <img src="assets/clock.png" alt="" class="frame">
                 <img src="assets/dial.png" alt="" class="dial">
             </div>
-            <p id="time-text"></p>
+            <p><span id="time-tick"></span> ticks</p>
+
+            <h1 id="date-caption">The date is <abbr id="date-day" title="One day has 24 hours and starts at sunrise."></abbr> <abbr id="date-month" title="One month has 8 days and represents a full moon phase."></abbr> <abbr id="date-year" title="One Minecraft year has 9 months and represents a full real day."></abbr></h1>
+            <div class="moon">
+                <img src="assets/transparent.png" alt="" class="moon-phase img-rounded">
+            </div>
             <p id="ticks-text"></p>
-            <p>The time is displayed in <a href="http://minecraft.gamepedia.com/Time">Minecraft hours</a> and real-life seconds. An hour has 50 seconds. A Minecraft day starts at the end of sunrise.</p>
+            <p>To find out more about the weekday and month names, check out <a href="//wiki.wurstmineberg.de/Time" target="_blank" rel="help">our wiki</a>.</p>
             <hr/>
             
             <footer>
