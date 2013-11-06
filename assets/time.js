@@ -18,7 +18,9 @@ var moon_phase = $('.moon-phase')
 var day_strings = ['Monday', 'Ducksday', 'Cowsday', 'Sheepsday', 'Horseday', 'Squidsday', 'Caturday', 'Pigsday'];
 var month_strings = ['Ironary', 'Zombiary', 'Gharch', 'Slimepril', 'Ocely', 'Magmacubust', 'Mooshtober', 'Snowember', 'Enderember'];
 
+var current_rotation = 0;
 $("abbr").tooltip();
+
 getData();
 setInterval(getData, 30000);
 setInterval(tickTimer, 50);
@@ -28,6 +30,15 @@ function stopAdjusting() {
 }
 
 function rotate(degrees) {
+	while (degrees < (current_rotation - 360)) {
+		degrees += 360;
+	};
+
+	while (degrees > (current_rotation + 360)) {
+		degrees -= 360;
+	};
+
+	current_rotation = degrees;
     dial.css({
         '-webkit-transform' : 'rotate('+degrees+'deg)',
         '-moz-transform' : 'rotate('+degrees+'deg)',
@@ -52,9 +63,8 @@ function padNumber(num, size) {
 
 function setTicks(ticks) {
     var ticksSinceSunrise = timeticks % 24000;
-    var timeProgress = timeticks / 24000;
     
-    dg = (timeProgress * 360) - 90;
+    dg = ((ticksSinceSunrise / 24000) * 360) - 90;
     rotate(dg);
 
 	var seconds = Math.floor(ticks / 20);
