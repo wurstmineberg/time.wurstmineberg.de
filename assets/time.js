@@ -17,8 +17,10 @@ var moon_phase = $('.moon-phase')
 
 var day_strings = ['Monday', 'Ducksday', 'Cowsday', 'Sheepsday', 'Horseday', 'Squidsday', 'Caturday', 'Pigsday'];
 var month_strings = ['Ironary', 'Zombiary', 'Gharch', 'Slimepril', 'Ocely', 'Magmacubust', 'Mooshtober', 'Snowember', 'Enderember'];
+var number_strings = ['1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th'];
 
 var current_rotation = 0;
+var current_day = -1;
 $("abbr").tooltip();
 
 getData();
@@ -85,6 +87,14 @@ function setTicks(ticks) {
     date_day.text(day_strings[daysSinceMonth]);
     date_month.text(month_strings[monthsSinceYear]);
     date_year.text(years);
+
+    if (daysSinceMonth != current_day) {
+    	date_day.attr('data-original-title', 'One day has 24 hours and starts at sunrise. ' + day_strings[daysSinceMonth] + ' is the ' + number_strings[daysSinceMonth] + ' month.');
+    	date_month.attr('data-original-title', 'One month has 8 days and represents a full moon phase. ' + month_strings[monthsSinceYear] + ' is the ' + number_strings[monthsSinceYear] + ' month.');
+    	$("abbr").tooltip('fixTitle');
+    	current_day = daysSinceMonth;
+    };
+
 
     var offset_width = Math.floor(daysSinceMonth % 4) * 128;
     var offset_height = Math.floor(daysSinceMonth / 4) * 128;
