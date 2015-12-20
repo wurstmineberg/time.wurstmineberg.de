@@ -103,7 +103,7 @@ function setTicks(ticks) {
 }
 
 function getData() {
-    $.ajax('http://api.wurstmineberg.de/server/level.json', {
+    $.ajax('//api.wurstmineberg.de/server/level.json', {
         dataType: 'json',
         error: function(request, status, error) {
             $('#time').html("???");
