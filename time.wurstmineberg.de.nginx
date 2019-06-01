@@ -1,0 +1,25 @@
+server {
+    server_name time.wurstmineberg.de;
+    server_name time.gharch.wurstmineberg.de;
+
+    listen 80;
+    listen [::]:80;
+
+    return 301 https://$host$request_uri;
+}
+
+server {
+    server_name time.wurstmineberg.de;
+    server_name time.gharch.wurstmineberg.de;
+
+    listen 443 ssl;
+    listen [::]:443 ssl;
+
+    ssl_certificate /etc/letsencrypt/live/inwx/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/inwx/privkey.pem;
+
+    root /opt/git/github.com/wurstmineberg/time.wurstmineberg.de/master;
+    autoindex on;
+
+    add_header Access-Control-Allow-Origin *;
+}
