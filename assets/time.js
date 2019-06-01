@@ -66,7 +66,7 @@ function padNumber(num, size) {
 function setTicks(ticks) {
     var ticksSinceSunrise = timeticks % 24000;
     var timeProgress = timeticks / 24000;
-    
+
     dg = (timeProgress * 360) - 90;
     rotate(dg);
 
@@ -90,10 +90,10 @@ function setTicks(ticks) {
     date_year.text(years);
 
     if (daysSinceMonth != current_day) {
-    	date_day.attr('data-original-title', 'One day has 24 hours and starts at sunrise. ' + day_strings[daysSinceMonth] + ' is the ' + number_strings[daysSinceMonth] + ' day of the month.');
-    	date_month.attr('data-original-title', 'One month has 8 days and represents a full moon phase. ' + month_strings[monthsSinceYear] + ' is the ' + number_strings[monthsSinceYear] + ' month.');
-    	$("abbr").tooltip('fixTitle');
-    	current_day = daysSinceMonth;
+        date_day.attr('data-original-title', 'One day has 24 hours and starts at sunrise. ' + day_strings[daysSinceMonth] + ' is the ' + number_strings[daysSinceMonth] + ' day of the month.');
+        date_month.attr('data-original-title', 'One month has 8 days and represents a full moon phase. ' + month_strings[monthsSinceYear] + ' is the ' + number_strings[monthsSinceYear] + ' month.');
+        $("abbr").tooltip('fixTitle');
+        current_day = daysSinceMonth;
     };
 
 
@@ -103,7 +103,7 @@ function setTicks(ticks) {
 }
 
 function getData() {
-    $.ajax('//api.wurstmineberg.de/server/level.json', {
+    $.ajax('https://wurstmineberg.de/api/v3/world/wurstmineberg/level.json', {
         dataType: 'json',
         error: function(request, status, error) {
             $('#time').html("???");
@@ -134,7 +134,7 @@ function getData() {
 
                 setTicks(timeticks);
                 adjusting = false;
-            } 
+            }
         }
     });
 }
